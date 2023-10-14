@@ -30,7 +30,7 @@
 // export default HomePage;
 
 import React, { useState, useEffect } from 'react';
-import  fetchMoviesTrend  from '../services/movies';
+import { fetchMoviesTrend }  from '../services/movies';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
@@ -39,7 +39,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       const moviesData = await fetchMoviesTrend();
-      setMovies(moviesData);
+      setMovies( moviesData );
     };
 
     fetchMovies();

@@ -4,6 +4,7 @@ import { NavLink, Routes, Route } from 'react-router-dom';
 import { StyledAppContainer } from './App.styled';
 import HomePage from 'pages/HomePage';
 import MoviesPage from 'pages/MoviesPage';
+import MovieDatailesPage from 'pages/MovieDatailesPage';
 
 
 
@@ -27,8 +28,9 @@ export const App = () => {
         </header>
 
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="movies" element={<MoviesPage />}></Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId/*" element={<MovieDatailesPage />} />
         </Routes>
       </StyledAppContainer>
     </>
