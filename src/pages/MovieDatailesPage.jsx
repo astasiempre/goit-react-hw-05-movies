@@ -1,13 +1,16 @@
 
-import { NavLink, Routes, Route } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { NavLink, Routes, Route, useLocation, Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMoviebyId } from '../services/movies';
 import { StyledMovieDetContainer } from './MovieDetailedPage.styled';
 import CastPage from './CastPage';
-import Reviews from './ReviewsPage';
+import ReviewsPage from './ReviewsPage';
 
 const MovieDetailsPage = () => {
+  const location = useLocation();
+  console.log(location);
+  const backLinkHref = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -34,7 +37,11 @@ const MovieDetailsPage = () => {
   const genreNames = movie.genres.map(genre => genre.name).join(', ');
   return (
     <>
+    <Link to={backLinkHref.current}>
+          <button type='button'>Go back</button>
+        </Link>
       <StyledMovieDetContainer>
+        
         <img
           className="movieImg"
           src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
@@ -63,7 +70,7 @@ const MovieDetailsPage = () => {
 
       <Routes>
         <Route path="cast" element={<CastPage />} />
-        <Route path="reviews" element={<Reviews />} />
+        <Route path="reviews" element={<ReviewsPage />} />
       </Routes>
     </>
   );

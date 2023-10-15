@@ -1,14 +1,15 @@
 
-
+import {Suspense, lazy} from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import { StyledAppContainer } from './App.styled';
-import HomePage from 'pages/HomePage';
-import MoviesPage from 'pages/MoviesPage';
-import MovieDatailesPage from 'pages/MovieDatailesPage';
+import Loader from './Loader/Loader';
+// import HomePage from 'pages/HomePage';
+// import MoviesPage from 'pages/MoviesPage';
+// import MovieDatailesPage from 'pages/MovieDatailesPage';
 
-
-
-
+const HomePage = lazy(() => import('pages/HomePage'));
+const MoviesPage = lazy(() => import('pages/MoviesPage'));
+const MovieDatailesPage = lazy(() => import('pages/MovieDatailesPage'));
 
 export const App = () => {
  
@@ -26,25 +27,15 @@ export const App = () => {
             </NavLink>
           </nav>
         </header>
-
+<Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />} />
           <Route path="movies/:movieId/*" element={<MovieDatailesPage />} />
-        </Routes>
+          </Routes>
+          </Suspense>
       </StyledAppContainer>
     </>
   );
 };
 export default App;
-// const fetchMoviesTrend = async () => {
-//   try {
-//     const response = await axios.get(
-//       `https://api.themoviedb.org/3/trending/movie/day?api_key=9f7b9f0f2a5f3e9c0b7e6f5d0f9e8a4c`
-//     );
-//     return response.data.results; // Assuming the movies data is inside the 'results' property
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     return [];
-//   }
-// };
