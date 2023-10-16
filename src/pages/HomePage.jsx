@@ -1,7 +1,5 @@
-
-
 import React, { useState, useEffect } from 'react';
-import { fetchMoviesTrend }  from '../services/movies';
+import { fetchMoviesTrend } from '../services/movies';
 import { Link } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
@@ -13,11 +11,10 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-     
-try {
+      try {
         setIsLoading(true);
         const moviesData = await fetchMoviesTrend();
-        setMovies( moviesData );
+        setMovies(moviesData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -33,11 +30,12 @@ try {
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
       <h1>Trending today</h1>
-      {movies !== null && movies.map(movie => (
-        <Link to={`/movies/${movie.id}`} key={movie.id}>
-          <li>{movie.title}</li>
-        </Link>
-      ))}
+      {movies !== null &&
+        movies.map(movie => (
+          <Link to={`/movies/${movie.id}`} key={movie.id}>
+            <li>{movie.title}</li>
+          </Link>
+        ))}
     </div>
   );
 };

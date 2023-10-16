@@ -1,4 +1,3 @@
-
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import Loader from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react';
@@ -17,7 +16,7 @@ const CastPage = () => {
     const fetchMovieCast = async () => {
       try {
         setIsLoading(true);
-        const castData = await findMovieCastbyID(movieId) ;
+        const castData = await findMovieCastbyID(movieId);
 
         setCast(castData);
       } catch (error) {

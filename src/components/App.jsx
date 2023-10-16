@@ -2,9 +2,7 @@ import { Suspense, lazy } from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import { StyledAppContainer } from './App.styled';
 import Loader from './Loader/Loader';
-// import HomePage from 'pages/HomePage';
-// import MoviesPage from 'pages/MoviesPage';
-// import MovieDatailesPage from 'pages/MovieDatailesPage';
+
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const MoviesPage = lazy(() => import('pages/MoviesPage'));
